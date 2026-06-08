@@ -1,0 +1,22 @@
+{% extends "screening/base.html" %}
+{% block title %}{% if creating %}Novo projeto{% else %}Editar projeto{% endif %}{% endblock %}
+{% block content %}
+<h1>{% if creating %}Novo projeto{% else %}Editar: {{ project.name }}{% endif %}</h1>
+<p class="muted">Define a instrucao base, os criterios I/E e o modelo default. Podes mudar o modelo a cada run.</p>
+
+<form method="post" class="card">
+  {% csrf_token %}
+  {% for field in form %}
+    <div class="field">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% if field.help_text %}<div class="helptext">{{ field.help_text }}</div>{% endif %}
+      {% if field.errors %}<ul class="errorlist">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+  {% endfor %}
+  <div style="margin-top:16px;">
+    <button type="submit" class="btn btn-primary">{% if creating %}Criar projeto{% else %}Guardar{% endif %}</button>
+    <a class="btn" href="{% if creating %}{% url 'project_list' %}{% else %}{% url 'project_detail' project.pk %}{% endif %}">Cancelar</a>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,29 @@
+# --- Secrets: never commit real API keys ---
+.env
+pipeline/.env
+webapp/.env
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+ENV/
+
+# --- Django ---
+db.sqlite3
+db.sqlite3-*
+*.log
+
+# --- Generated / reproducible outputs ---
+pipeline/out/
+report_charts/
+.playwright-mcp/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

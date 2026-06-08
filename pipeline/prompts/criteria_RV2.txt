@@ -1,0 +1,16 @@
+# RV2 — Revisão de casos / série de casos (não é SR PRISMA stricto sensu)
+# Lazarian G et al. (2021). COVID-19 and Immune-Mediated RBC Destruction.
+# Am J Clin Pathol. https://academic.oup.com/ajcp/article/157/6/844/6468807
+
+Inclusion criteria:
+1. COVID-19 confirmed by SARS-CoV-2 nucleic acid detection via reverse-transcription polymerase chain reaction (RT-PCR), OR receipt of one or more doses of a SARS-CoV-2 vaccine.
+2. Article type is a case report, case series, or cohort study.
+3. Describes one or more patients with a diagnosis of autoimmune hemolytic anemia (AIHA).
+
+Exclusion criteria:
+1. Duplicate publication.
+2. Not published in English.
+3. Review article, in vitro experiment, or in vivo experiment.
+4. Concerns about temporality, or the association between COVID-19 and AIHA is not adequately established.
+5. No positive RT-PCR test for COVID-19 (and no documented SARS-CoV-2 vaccination).
+6. Hemolysis is concomitant with COVID-19 but secondary to non-immune etiologies.

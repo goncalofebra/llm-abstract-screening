@@ -1,0 +1,36 @@
+{% extends "screening/base.html" %}
+{% load static %}
+{% block title %}Run #{{ run.pk }} · progresso{% endblock %}
+{% block content %}
+
+<p class="small muted"><a href="{% url 'project_detail' project.pk %}">&larr; {{ project.name }}</a></p>
+<h1>Run #{{ run.pk }}</h1>
+<p class="muted">{{ run.get_provider_display }} · modelo {{ run.model|default:"(default)" }} · estrutura {{ run.prompt_structure }}</p>
+
+<div class="card" id="run-card" data-url="{% url 'run_progress' run.pk %}" data-review="{% url 'run_review' run.pk %}">
+  <div>Estado: <span class="badge badge-{{ run.status }}" id="status-badge">{{ run.get_status_display }}</span></div>
+
+  <div class="progress"><div class="bar" id="bar" style="width: {{ run.progress_pct }}%;"></div></div>
+
+  <div class="stats">
+    <div class="stat"><div class="num"><span id="processed">{{ run.processed }}</span>/<span id="total">{{ run.total }}</span></div><div class="lab">processados</div></div>
+    <div class="stat"><div class="num" id="pct">{{ run.progress_pct }}%</div><div class="lab">progresso</div></div>
+    <div class="stat"><div class="num" id="includes">{{ run.include_count }}</div><div class="lab">includes (LLM)</div></div>
+    <div class="stat"><div class="num" id="tokens">{{ run.tokens }}</div><div class="lab">tokens</div></div>
+  </div>
+
+  <div id="error-box" class="msg-error" style="display:{% if run.error %}block{% else %}none{% endif %};white-space:pre-wrap;padding:10px;border-radius:8px;">{{ run.error }}</div>
+
+  <div style="margin-top:14px;">
+    {% if run.is_active %}
+      <form method="post" action="{% url 'run_cancel' run.pk %}" class="inline-form">
+        {% csrf_token %}<button class="btn btn-danger" id="cancel-btn">Cancelar</button>
+      </form>
+    {% endif %}
+    <a class="btn btn-primary" id="review-btn" href="{% url 'run_review' run.pk %}"
+       style="display:{% if run.is_active %}none{% else %}inline-block{% endif %};">Rever resultados &rarr;</a>
+  </div>
+</div>
+
+{% endblock %}
+{% block scripts %}<script src="{% static 'screening/progress.js' %}"></script>{% endblock %}

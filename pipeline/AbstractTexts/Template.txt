@@ -1,0 +1,11 @@
+Title: <título do primeiro abstract da MA>
+Abstract: <texto integral do abstract>
+Label Included: 1
+
+Title: <título do segundo abstract>
+Abstract: <texto integral do abstract>
+Label Included: 0
+
+Title: <título do terceiro abstract>
+Abstract: <texto integral do abstract>
+Label Included: 1

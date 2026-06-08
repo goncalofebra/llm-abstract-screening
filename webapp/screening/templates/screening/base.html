@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}LLM Abstract Screening{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'screening/style.css' %}">
+</head>
+<body>
+  <header class="topbar">
+    <a href="{% url 'project_list' %}" class="brand">LLM Abstract Screening</a>
+    <span>
+      <a href="{% url 'settings' %}" class="btn btn-sm">Definicoes</a>
+      <a href="{% url 'project_create' %}" class="btn btn-primary btn-sm">+ Novo projeto</a>
+    </span>
+  </header>
+  <main class="container">
+    {% if messages %}
+      <ul class="messages">
+        {% for m in messages %}<li class="msg msg-{{ m.tags }}">{{ m }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="foot">GIC · Mestrado Bioinformática Clínica · pipeline LLM de Title/Abstract screening</footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

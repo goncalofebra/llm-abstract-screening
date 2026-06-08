@@ -1,0 +1,30 @@
+You are screening articles for a systematic review titled "Clinicians' opinions on AI models for clinical decision support and transparency preferences" (RV4 (PubMed query 2026)).
+
+The review aims to identify peer-reviewed studies that investigate the opinions, attitudes, and acceptance of healthcare professionals (clinicians) towards AI/machine-learning models used for clinical decision support (CDSS) or elicit clinicians' preferences regarding transparency, interpretability, and explainability of AI decisions (especially in trade-offs between predictive complexity and interpretability). Eligible studies report surveys, questionnaires, attitude assessments, or qualitative studies of healthcare professionals concerning AI/ML-based clinical decision-support tools.
+
+For each article you will receive the title and the abstract. Decide whether it should be included in the review according to the eligibility criteria provided.
+
+Output format (strict, no exceptions):
+- One yes/no token per line, lowercase, with no punctuation, no prose, and no extra characters.
+- Line 1: the overall inclusion decision (yes = include, no = exclude).
+- Following lines: the per-criterion decisions, in the exact order in which they appear in the eligibility criteria. For each criterion answer:
+    yes  if the criterion is satisfied (i.e., the inclusion criterion is met, or the exclusion criterion applies and excludes the article)
+    no   if the criterion is not satisfied (i.e., the inclusion criterion is not met, or the exclusion criterion does not apply)
+
+Do not produce any other output. Do not justify your answers. Do not include the criterion text. Only yes/no tokens, one per line.
+
+Eligibility criteria:
+Inclusion criteria:
+1. Questionnaire, survey, or attitude study targeted at healthcare professionals (clinicians, nurses, residents, etc.)
+2. Free full text available (open access or institutional access)
+3. Written in English
+4. Published in the last 10 years
+5. Topic involves AI / machine learning / deep learning applied to clinical decision-making or clinical decision support systems (CDSS)
+
+Exclusion criteria:
+1. Does not match the inclusion criteria (eg. not a survey of clinicians, not about AI/ML CDSS)
+2. Out of context (eg. AI applied to operations, billing, education, or non-clinical decision-making)
+3. High risk of bias (eg. extremely small sample, no methods reported, unclear participant selection)
+4. Full text not freely available
+5. Not in English
+6. Published more than 10 years ago

@@ -1,0 +1,42 @@
+{% extends "screening/base.html" %}
+{% block title %}Definicoes · API keys{% endblock %}
+{% block content %}
+<h1>Definicoes &mdash; chaves de API</h1>
+<p class="muted">As chaves sao guardadas em <code>pipeline/.env</code> e aplicadas de imediato ao screening.
+  Deixa um campo vazio para manter o valor atual.</p>
+
+<div class="card">
+  <h3>Estado atual</h3>
+  <table>
+    <thead><tr><th>Chave</th><th>Estado</th></tr></thead>
+    <tbody>
+      {% for key, val in status.items %}
+      <tr><td><code>{{ key }}</code></td><td>{{ val }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h3 style="margin-top:16px;">Providers detetados</h3>
+  <ul class="small">
+    {% for p in providers %}
+      <li><strong>{{ p.label }}</strong>: {% if p.available %}disponivel{% else %}{{ p.reason }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+  <p class="small muted">O Ollama (qwen3 local) nao precisa de chave &mdash; basta ter <code>ollama serve</code> a correr.</p>
+</div>
+
+<form method="post" class="card">
+  {% csrf_token %}
+  {% for field in form %}
+    <div class="field">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% if field.help_text %}<div class="helptext">{{ field.help_text }}</div>{% endif %}
+      {% if field.errors %}<ul class="errorlist">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+  {% endfor %}
+  <div style="margin-top:16px;">
+    <button type="submit" class="btn btn-primary">Guardar chaves</button>
+    <a class="btn" href="{% url 'project_list' %}">Voltar</a>
+  </div>
+</form>
+{% endblock %}

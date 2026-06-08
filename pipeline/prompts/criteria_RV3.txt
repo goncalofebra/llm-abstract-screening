@@ -1,0 +1,15 @@
+# RV3 — Systematic Review
+# Giansanti D et al. (2022). The cost-effectiveness of digital health interventions:
+# A systematic review of the literature. https://pubmed.ncbi.nlm.nih.gov/36033812/
+
+Inclusion criteria:
+1. Peer-reviewed journal article.
+2. Reports outcomes related to the cost-effectiveness analysis of digital health technologies.
+3. Original study (cohort study, clinical trial, cross-sectional study, case-control study, or case series).
+4. Review article (to be included for discussion).
+
+Exclusion criteria:
+1. Full text not available.
+2. Article published as abstract only (no full text).
+3. Case report, or secondary research such as commentaries and editorials.
+4. Studies in which the digital health innovation was used only for recording patient information (not for clinical or cost-effectiveness assessment).

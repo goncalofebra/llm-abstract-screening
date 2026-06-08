@@ -1,0 +1,36 @@
+{% extends "screening/base.html" %}
+{% block title %}Projetos · Abstract Screening{% endblock %}
+{% block content %}
+<h1>Projetos</h1>
+<p class="muted">Cada projeto e' uma revisao sistematica: instrucao, criterios I/E e o corpus de abstracts.</p>
+
+{% if projects %}
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>Nome</th><th>Modelo default</th><th>Estrutura</th><th>Records</th><th>Runs</th><th>Criado</th><th></th></tr>
+    </thead>
+    <tbody>
+      {% for p in projects %}
+      <tr>
+        <td><a href="{% url 'project_detail' p.pk %}"><strong>{{ p.name }}</strong></a>
+          {% if p.description %}<div class="small muted">{{ p.description|truncatechars:80 }}</div>{% endif %}
+        </td>
+        <td class="small">{{ p.get_provider_display }}<br><span class="muted">{{ p.model|default:"(default)" }}</span></td>
+        <td>{{ p.prompt_structure }}</td>
+        <td>{{ p.record_count }}</td>
+        <td>{{ p.runs.count }}</td>
+        <td class="small muted">{{ p.created_at|date:"Y-m-d H:i" }}</td>
+        <td><a class="btn btn-sm" href="{% url 'project_detail' p.pk %}">Abrir</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="card">
+  <p>Ainda nao ha projetos.</p>
+  <a class="btn btn-primary" href="{% url 'project_create' %}">Criar o primeiro projeto</a>
+</div>
+{% endif %}
+{% endblock %}

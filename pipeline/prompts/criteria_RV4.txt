@@ -1,0 +1,17 @@
+# RV4 criteria
+# PubMed query, last 10 years, Free Full Text
+
+Inclusion criteria:
+1. Questionnaire, survey, or attitude study targeted at healthcare professionals (clinicians, nurses, residents, etc.)
+2. Free full text available (open access or institutional access)
+3. Written in English
+4. Published in the last 10 years
+5. Topic involves AI / machine learning / deep learning applied to clinical decision-making or clinical decision support systems (CDSS)
+
+Exclusion criteria:
+1. Does not match the inclusion criteria (eg. not a survey of clinicians, not about AI/ML CDSS)
+2. Out of context (eg. AI applied to operations, billing, education, or non-clinical decision-making)
+3. High risk of bias (eg. extremely small sample, no methods reported, unclear participant selection)
+4. Full text not freely available
+5. Not in English
+6. Published more than 10 years ago

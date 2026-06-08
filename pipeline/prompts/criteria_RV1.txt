@@ -1,0 +1,27 @@
+# RV1 — Meta-análise
+# Qiu Z et al. (2025). Safety, efficacy, and cardiovascular benefits of combination
+# therapy with SGLT-2 inhibitors and GLP-1 receptor agonists in patients with
+# diabetes mellitus: a systematic review and meta-analysis of randomized controlled trials.
+# https://pmc.ncbi.nlm.nih.gov/articles/PMC11849334/
+
+Inclusion criteria:
+1. Randomized controlled trial (RCT) design.
+2. Includes a study arm with combination therapy of an SGLT-2 inhibitor (SGLT-2i) AND a GLP-1 receptor agonist (GLP-1RA).
+3. Includes a control arm (placebo or monotherapy).
+4. Conducted in patients with diabetes mellitus.
+5. Full text published in English and accessible.
+6. Reports exact quantitative outcomes (numerical values, means, or risk ratios) — not only qualitative trends such as "risk increased".
+7. At least 50 participants per group.
+8. Among duplicate reports of the same trial, only the report with the longest follow-up duration is eligible.
+
+Exclusion criteria:
+1. Not a randomized controlled trial design.
+2. No dedicated arm for combination SGLT-2i + GLP-1RA therapy.
+3. No control arm.
+4. Incomplete study (preliminary or terminated early without final results).
+5. Not published in English.
+6. Full text not accessible.
+7. Non-diabetic study population.
+8. Fewer than 50 participants per group.
+9. Reports only qualitative trends, without exact numbers, means, or risk ratios.
+10. Duplicate publication of the same trial with shorter follow-up than another available report.

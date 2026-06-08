@@ -1,0 +1,83 @@
+{% extends "screening/base.html" %}
+{% load static %}
+{% block title %}Revisao · Run #{{ run.pk }}{% endblock %}
+{% block content %}
+
+<p class="small muted"><a href="{% url 'project_detail' project.pk %}">&larr; {{ project.name }}</a></p>
+<h1>Revisao &mdash; Run #{{ run.pk }}</h1>
+<p class="muted">{{ run.get_provider_display }} · modelo {{ run.model|default:"(default)" }} · estrutura {{ run.prompt_structure }}
+  · <span class="badge badge-{{ run.status }}">{{ run.get_status_display }}</span></p>
+
+<div class="card">
+  <div class="stats">
+    <div class="stat"><div class="num">{{ run.total }}</div><div class="lab">total</div></div>
+    <div class="stat"><div class="num">{{ run.include_count }}</div><div class="lab">includes (LLM)</div></div>
+    <div class="stat"><div class="num" id="final-includes">{{ run.final_include_count }}</div><div class="lab">includes (final)</div></div>
+    <div class="stat"><div class="num" id="reviewed-count">{{ run.reviewed_count }}</div><div class="lab">revistos</div></div>
+  </div>
+  <div style="margin-top:10px;">
+    <a class="btn btn-sm" href="{% url 'run_export' run.pk %}?format=csv">Exportar CSV (includes finais)</a>
+    <a class="btn btn-sm" href="{% url 'run_export' run.pk %}?format=xlsx">Exportar XLSX</a>
+  </div>
+  <p class="small muted" style="margin-top:8px;">O export usa a decisao final: o override do revisor quando existe, senao a decisao do LLM.</p>
+</div>
+
+<div class="filters">
+  <span class="small muted">Decisao LLM:</span>
+  <a href="?decision=all&reviewed={{ reviewed }}" class="{% if decision == 'all' %}active{% endif %}">Todos</a>
+  <a href="?decision=include&reviewed={{ reviewed }}" class="{% if decision == 'include' %}active{% endif %}">Include</a>
+  <a href="?decision=exclude&reviewed={{ reviewed }}" class="{% if decision == 'exclude' %}active{% endif %}">Exclude</a>
+  <a href="?decision=unparseable&reviewed={{ reviewed }}" class="{% if decision == 'unparseable' %}active{% endif %}">Sem parse</a>
+  <span class="small muted" style="margin-left:12px;">Revisto:</span>
+  <a href="?decision={{ decision }}&reviewed=all" class="{% if reviewed == 'all' %}active{% endif %}">Todos</a>
+  <a href="?decision={{ decision }}&reviewed=yes" class="{% if reviewed == 'yes' %}active{% endif %}">Sim</a>
+  <a href="?decision={{ decision }}&reviewed=no" class="{% if reviewed == 'no' %}active{% endif %}">Nao</a>
+</div>
+
+<div class="card" id="review-table" data-decide-url="/predictions/0/decide/">
+  <table>
+    <thead><tr><th>#</th><th>Artigo</th><th>LLM</th><th>Final</th><th>Decisao do revisor</th></tr></thead>
+    <tbody>
+      {% for p in page %}
+      <tr id="pred-{{ p.pk }}" class="{% if p.final_decision == INCLUDE %}is-include{% else %}is-exclude{% endif %}">
+        <td class="small muted">{{ p.record.idx }}</td>
+        <td>
+          <strong>{{ p.record.title }}</strong>
+          {% if p.record.doi %}<div class="small muted">DOI: {{ p.record.doi }}</div>{% endif %}
+          <details>
+            <summary>abstract / resposta</summary>
+            <div class="abstract-text">{{ p.record.abstract|default:"(sem abstract)" }}</div>
+            {% if p.per_criterion %}<div class="crit-list">Criterios (por ordem): {{ p.per_criterion|join:", " }}</div>{% endif %}
+            <div class="crit-list">Resposta LLM: {{ p.raw_response|truncatechars:300 }}</div>
+          </details>
+        </td>
+        <td>
+          {% if p.pred == INCLUDE %}<span class="badge badge-include">include</span>
+          {% elif p.pred == EXCLUDE %}<span class="badge badge-exclude">exclude</span>
+          {% else %}<span class="badge badge-unparseable">sem parse</span>{% endif %}
+        </td>
+        <td><span class="badge {% if p.final_decision == INCLUDE %}badge-include{% else %}badge-exclude{% endif %}" id="final-{{ p.pk }}">{% if p.final_decision == INCLUDE %}include{% else %}exclude{% endif %}</span></td>
+        <td style="white-space:nowrap;">
+          <button class="btn btn-sm btn-include decide" data-id="{{ p.pk }}" data-decision="include">Incluir</button>
+          <button class="btn btn-sm btn-exclude decide" data-id="{{ p.pk }}" data-decision="exclude">Excluir</button>
+          <button class="btn btn-sm decide" data-id="{{ p.pk }}" data-decision="reset" title="Voltar a' decisao do LLM">&#8635;</button>
+          <span class="small muted rev-state" id="rev-{{ p.pk }}">{% if p.reviewer_decision is not None %}(revisto){% endif %}</span>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="5" class="muted">Sem resultados para este filtro.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if page.paginator.num_pages > 1 %}
+<div class="pagination">
+  {% if page.has_previous %}<a class="btn btn-sm" href="?decision={{ decision }}&reviewed={{ reviewed }}&page={{ page.previous_page_number }}">&larr; Anterior</a>{% endif %}
+  <span class="small muted">Pagina {{ page.number }} de {{ page.paginator.num_pages }}</span>
+  {% if page.has_next %}<a class="btn btn-sm" href="?decision={{ decision }}&reviewed={{ reviewed }}&page={{ page.next_page_number }}">Seguinte &rarr;</a>{% endif %}
+</div>
+{% endif %}
+
+{% endblock %}
+{% block scripts %}<script src="{% static 'screening/review.js' %}"></script>{% endblock %}
