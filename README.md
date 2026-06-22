@@ -146,8 +146,8 @@ See `webapp/README.md` for details.
 
 ## Authors & Contributions
 
-*   **Miguel Alves** ([@username](https://github.com/mpalvees)) — Conceptualisation of the study, pipeline architecture design, overall implementation, and project documentation.
-*   **Gonçalo Bernardo** ([@username](https://github.com/goncalofebra)) — Development of the entire codebase, implementation of the screening pipeline, the local web application, and contribution to the final manuscript.
+*   **Miguel Alves** ([@mpalvees](https://github.com/mpalvees)) — Conceptualisation of the study, pipeline architecture design, overall implementation, and project documentation.
+*   **Gonçalo Bernardo** ([@goncalofebra](https://github.com/goncalofebra)) — Development of the entire codebase, implementation of the screening pipeline, the local web application, and contribution to the final manuscript.
 *   **Júlia Gonçalves**, **Alexandra Rodrigues**, & **André Oliveira** — Substantial contribution to the writing of the manuscript, curation of the review datasets, and elaboration of the systematic reviews used for validation.
 
 ---
