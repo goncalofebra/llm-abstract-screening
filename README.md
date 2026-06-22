@@ -5,8 +5,7 @@ reviews, with a command-line pipeline **and** a local **Django web application**
 (*human-in-the-loop*). It classifies abstracts against inclusion/exclusion criteria using
 large language models and evaluates them against a gold standard.
 
-Developed for an MSc in Clinical Bioinformatics (course: Gestão de Informação Clínica, GIC),
-replicating the design of Li *et al.* (2024) in a minimal, reproducible single-LLM form.
+Project developed during the course of Clinical Information Management for an MSc Degree in Clinical Bioinformatics,replicating the design of Li *et al.* (2024) in a minimal, reproducible single-LLM form.
 
 ## Features
 
@@ -144,6 +143,18 @@ See `webapp/README.md` for details.
   Do not expose it on the internet without hardening (auth, `DEBUG=False`, a fresh `SECRET_KEY`).
 - For binary yes/no tasks always pass `--no-think` (disables reasoning; ~10x faster).
 - The corpora in `AbstractTexts/` use the format `Title:` / `Abstract:` / `Label Included: 0|1`.
+
+## Authors & Contributions
+
+*   **Miguel Alves** ([@username](https://github.com/mpalvees)) — Conceptualisation of the study, pipeline architecture design, overall implementation, and project documentation.
+*   **Gonçalo Bernardo** ([@username](https://github.com/goncalofebra)) — Development of the entire codebase, implementation of the screening pipeline, the local web application, and contribution to the final manuscript.
+*   **Júlia Gonçalves**, **Alexandra Rodrigues**, & **André Oliveira** — Substantial contribution to the writing of the manuscript, curation of the review datasets, and elaboration of the systematic reviews used for validation.
+
+---
+*All authors critically reviewed and approved the final version of the project.*
+
+The complete scientific paper detailing the methodology, replication design, and results can be accessed here:
+**[Download Project Paper (PDF)](./Final_Manuscript.pdf)**
 
 ## License
 
